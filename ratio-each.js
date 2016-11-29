@@ -1,7 +1,6 @@
 module.exports = (function(){
   "use strict";
   const fs = require("fs");
-  const Promise = require("bluebird");
   const path = require("path");
   const _ = require("lodash");
   const fileName = process.argv[2];
@@ -11,13 +10,8 @@ module.exports = (function(){
   const fileName_total = process.argv[4];
   const filePath_total = path.join(__dirname,fileName_total);
   const gender = process.argv[5];
-  const ageBands = ["0-4","5-9"];
   const log = require("debug")("ratio-each");
-  let finalArray = [];
-  let finalString = "";
-  let secondString = "";
-  var timeBegin = new Date();
-  let dataObj = {};
+
 
   var assignAges = function(){
     fs.readFile(filePath,{encoding:"utf-8"},(err,ratioData) => {
@@ -51,15 +45,15 @@ module.exports = (function(){
                 total: totalRatio,
                 age_band: Object.keys(ratioDataObj)[0],
                 ratio:areaRatios
-              }
+              };
               let thisString = JSON.stringify(thisObj)+"\n";
               fs.appendFileSync(path.join("jsonFiles","ratio-each-age-"+gender+".json"),thisString,"utf-8")
             });//forEach each areaId
           });//forEach each age band
-        })
+        });
       }//else
     });
-  }
+  };
 
   assignAges();
-}())  
+}()); 

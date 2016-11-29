@@ -41,20 +41,20 @@ module.exports = (function(){
         });//forEach csvData;
         let finalObj = {
           data: dataObj
-        }
+        };
         fs.writeFile(getFilePath("jsonFiles","total-people-lsoa-"+gender+".json"),JSON.stringify(finalObj),(err) =>{
           if(err){
             log("err while saving file %s",err);
           }else{
             log("file saved");
           }
-        })
+        });
       }//else
-    })
-  }
+    });
+  };
   function getFilePath(folderName,fileName){
     return path.join(__dirname,path.join(folderName,fileName));
   }
 
   totalCal();
-}())
+}());

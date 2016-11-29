@@ -1,0 +1,9 @@
+{
+  "commandHost": "https://cmd.nq-m.com",
+   "queryHost": "https://q.nq-m.com",
+   "accessTokenTTL":31536000,
+   "shareKeyId":"H1g9B29Ele",
+   "shareKeySecret":"1234554321",
+   "numberId":"S1lm4CYefg",
+   "popletId":"SJxzMvRIye"
+}

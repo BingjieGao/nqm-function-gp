@@ -1,0 +1,17 @@
+{
+  "name": "nqm-function-gp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "patients-in-age_band.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "csvtojson": "^1.0.3",
+    "debug": "^2.3.2",
+    "nqm-api-tdx": "^0.1.25"
+  }
+}

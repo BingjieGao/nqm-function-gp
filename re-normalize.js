@@ -20,7 +20,7 @@ module.exports = (function(){
       });
       jsonDataObj = _.omit(jsonDataObj,["total"]);
       let jsonDataString = JSON.stringify(jsonDataObj)+"\n";
-      fs.appendFileSync(path.join("jsonFiles","ratio-each-age-normoalized.json"),jsonDataString,"utf-8");
+      fs.appendFileSync(path.join("jsonFiles-2014","ratio-each-age-normoalize.json"),jsonDataString,"utf-8");
     });
   };
 

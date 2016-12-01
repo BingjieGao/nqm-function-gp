@@ -10,6 +10,7 @@ module.exports = (function(){
   const fileName_total = process.argv[4];
   const filePath_total = path.join(__dirname,fileName_total);
   const gender = process.argv[5];
+  const period = process.argv[6];
   const log = require("debug")("ratio-each");
 
 
@@ -32,7 +33,13 @@ module.exports = (function(){
               var areaRatios = {};
               var totalRatio = 0;
               _.forEach(jsonDataObj["ratios"],(persons,serviceId) =>{
-                var ageRatio = persons * ratioDataObj[Object.keys(ratioDataObj)[0]][serviceId]/totalObj[jsonDataObj["area_id"]];
+                var ageRatio;
+                if(!totalObj[jsonDataObj["area_id"]] || totalObj[jsonDataObj["area_id"]] === 0){
+                  ageRatio = 0;
+                }else{
+                  ageRatio = persons * ratioDataObj[Object.keys(ratioDataObj)[0]][serviceId]/totalObj[jsonDataObj["area_id"]];
+                }
+                
                 if(ageRatio !== 0 && ageRatio !== null && ageRatio !== undefined){
                   areaRatios[serviceId] = ageRatio;
                   totalRatio += ageRatio;
@@ -41,13 +48,13 @@ module.exports = (function(){
               let thisObj = {
                 area_id:jsonDataObj["area_id"],
                 gender: gender,
-                period:"10-2016",
+                period:period,
                 total: totalRatio,
                 age_band: Object.keys(ratioDataObj)[0],
                 ratio:areaRatios
               };
               let thisString = JSON.stringify(thisObj)+"\n";
-              fs.appendFileSync(path.join("jsonFiles","ratio-each-age-"+gender+".json"),thisString,"utf-8")
+              fs.appendFileSync(path.join("jsonFiles-2014","ratio-each-age-"+gender+".json"),thisString,"utf-8");
             });//forEach each areaId
           });//forEach each age band
         });

@@ -19,19 +19,19 @@ module.exports = (function(){
         _.forEach(csvDataArray,(lineObj,j) => {
             if(j>0){
               let dataArray = lineObj.split(",");
-              if(j % 2 == 1 && csvDataArray[j+1] != undefined){
+              if(j % 2 === 1 && csvDataArray[j+1] !== undefined){
                 var lineArrayEven = csvDataArray[j+1].split(",");
                 var beginIndex = 0;
                 _.forEach(dataArray,(data,i) =>{
-                  if( (dataArray[i] == "LSOA_CODE")){
+                  if( (dataArray[i] === "LSOA_CODE")){
                     beginIndex = i+1;
                   }
                   if(beginIndex > 0
                       && (dataArray[beginIndex] !== undefined)
-                      && (dataArray[beginIndex].indexOf("\r") == -1)){
+                      && (dataArray[beginIndex].indexOf("\r") === -1)){
                     if(!dataObj[dataArray[beginIndex]]){
-                        dataObj[dataArray[beginIndex]] = 0;
-                      }
+                      dataObj[dataArray[beginIndex]] = 0;
+                    }
                     dataObj[dataArray[beginIndex]] += Number(lineArrayEven[beginIndex]);
                     beginIndex += 1;
                   }
@@ -42,7 +42,7 @@ module.exports = (function(){
         let finalObj = {
           data: dataObj
         };
-        fs.writeFile(getFilePath("jsonFiles","total-people-lsoa-"+gender+".json"),JSON.stringify(finalObj),(err) =>{
+        fs.writeFile(getFilePath("jsonFiles-2014","total-people-lsoa-"+gender+".json"),JSON.stringify(finalObj),(err) =>{
           if(err){
             log("err while saving file %s",err);
           }else{
